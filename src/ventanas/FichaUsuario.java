@@ -121,9 +121,8 @@ public class FichaUsuario extends javax.swing.JFrame {
         lblTitulo.setText("Informacion de Usuario");
         getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        lblFooter.setForeground(java.awt.Color.black);
         lblFooter.setText("Creado por Gamer Studio ©");
-        getContentPane().add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 370, -1, -1));
+        getContentPane().add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Fira Sans", 1, 15)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(197, 224, 224));

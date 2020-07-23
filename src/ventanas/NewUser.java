@@ -134,9 +134,8 @@ public class NewUser extends javax.swing.JFrame {
         getContentPane().add(boxNiveles, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 130, -1));
         getContentPane().add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, 200, -1));
 
-        lblFooter.setForeground(java.awt.Color.black);
         lblFooter.setText("Creado por Gamer Studio ©");
-        getContentPane().add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 365, -1, -1));
+        getContentPane().add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, -1, -1));
         getContentPane().add(lblWallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 430));
 
         pack();

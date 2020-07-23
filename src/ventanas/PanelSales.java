@@ -129,6 +129,11 @@ public class PanelSales extends javax.swing.JFrame {
         getContentPane().add(botonGestionCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 120, 100));
 
         botonImprimirClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/document_report_16751.png"))); // NOI18N
+        botonImprimirClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonImprimirClientesActionPerformed(evt);
+            }
+        });
         getContentPane().add(botonImprimirClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, 120, 100));
 
         jLabel1.setFont(new java.awt.Font("Fira Sans Book", 1, 16)); // NOI18N
@@ -150,9 +155,8 @@ public class PanelSales extends javax.swing.JFrame {
         lblNombreUsuario.setForeground(java.awt.Color.lightGray);
         getContentPane().add(lblNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        lblFooter.setForeground(java.awt.Color.black);
         lblFooter.setText("Creado por Gamer Studio ©");
-        getContentPane().add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 365, -1, -1));
+        getContentPane().add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, -1, -1));
         getContentPane().add(lblWallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 430));
 
         pack();
@@ -160,15 +164,23 @@ public class PanelSales extends javax.swing.JFrame {
 
     private void botonRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarClienteActionPerformed
 
-        
+        NuevoCliente nuevocliente = new NuevoCliente();
+        nuevocliente.setVisible(true);
 
     }//GEN-LAST:event_botonRegistrarClienteActionPerformed
 
     private void botonGestionClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGestionClienteActionPerformed
 
-        
+        GestionClientes gestionclientes = new GestionClientes();
+        gestionclientes.setVisible(true);
 
     }//GEN-LAST:event_botonGestionClienteActionPerformed
+
+    private void botonImprimirClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonImprimirClientesActionPerformed
+        
+        
+        
+    }//GEN-LAST:event_botonImprimirClientesActionPerformed
 
     /**
      * @param args the command line arguments

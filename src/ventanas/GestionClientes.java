@@ -20,26 +20,25 @@ import javax.swing.WindowConstants;
 
 /**
  *
- * @author doug1as
+ * @author guede
  */
-public class GestionUsuario extends javax.swing.JFrame {
+public class GestionClientes extends javax.swing.JFrame {
     
     String user;
-    public static String user_update = "";
-    
+    public static int IDCliente_update = 0;
     DefaultTableModel model = new DefaultTableModel();
 
     /**
-     * Creates new form GestionUsuario
+     * Creates new form GestionClientes
      */
-    public GestionUsuario() {
+    public GestionClientes() {
         initComponents();
         user = VentanaLogin.user;
         
         this.setTitle("Gestion de Usuarios. Sesion - " + user);
         this.setLocationRelativeTo(null);
-        this.setResizable(false);
         this.setSize(650, 430);
+        this.setResizable(false);
         
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         
@@ -50,25 +49,27 @@ public class GestionUsuario extends javax.swing.JFrame {
         this.repaint();
         
         try {
+            
             Connection cn = Conexion.conectar();
             PreparedStatement pst = cn.prepareStatement(
-                    "select id_usuarios, nombre_usuario, username, tipo_nivel, estatus from usuarios");
+            "select id_clientes, nombre_cliente, email_cliente, tel_cliente, direccion_cliente, ultima_modificacion from clientes");
             
             ResultSet rs = pst.executeQuery();
             
-            tablaUsuarios = new JTable(model);
-            jScrollPane1.setViewportView(tablaUsuarios);
+            tablaClientes = new JTable(model);
+            jScrollPane1.setViewportView(tablaClientes);
             
             model.addColumn(" # ");
-            model.addColumn("Nombre");
-            model.addColumn("Usuario");
-            model.addColumn("Permisos");
-            model.addColumn("Estatus");
+            model.addColumn("Nombre Cliente");
+            model.addColumn(" eMail ");
+            model.addColumn("Telefono");
+            model.addColumn("Direccion");
+            model.addColumn("Ultima Modificacion");
             
             while (rs.next()) {
-                Object[] fila = new Object[5];
+                Object[] fila = new Object[6];
                 
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < 6; i++) {
                     
                     fila[i] = rs.getObject(i + 1);
                     
@@ -78,27 +79,9 @@ public class GestionUsuario extends javax.swing.JFrame {
             cn.close();
             
         } catch (SQLException e) {
-            System.err.println("Error al hacer la tabla" + e);
-            JOptionPane.showMessageDialog(null, "Contacte con el administrador" + e);
+            System.err.println("Error al extraer datos a la tabla clientes " + e);
+            JOptionPane.showMessageDialog(null, "Error al llenar la tabla de clientes.\n Contacte con el administrador "+e);
         }
-        
-        tablaUsuarios.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e){
-                int fila_point = tablaUsuarios.rowAtPoint(e.getPoint());
-                int columna_point = 2;
-                
-                if (fila_point > -1) {
-                    
-                    user_update = (String)model.getValueAt(fila_point, columna_point);
-                    FichaUsuario ficha = new FichaUsuario();
-                    ficha.setVisible(true);
-                    
-                } else {
-                }
-            }
-        });
-        
     }
     
     @Override
@@ -116,25 +99,25 @@ public class GestionUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblFooter = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaUsuarios = new javax.swing.JTable();
-        lblFooter = new javax.swing.JLabel();
+        tablaClientes = new javax.swing.JTable();
         lblWallpaper = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
-        setMaximumSize(new java.awt.Dimension(650, 430));
-        setMinimumSize(new java.awt.Dimension(650, 430));
-        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblFooter.setText("Creado por Gamer Studio ©");
+        getContentPane().add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Fira Mono", 0, 26)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(197, 224, 224));
-        jLabel1.setText("Usuarios Registrados");
+        jLabel1.setText("Clientes Registrados");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, -1, -1));
 
-        tablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+        tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -145,12 +128,9 @@ public class GestionUsuario extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tablaUsuarios);
+        jScrollPane1.setViewportView(tablaClientes);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 80, 635, 250));
-
-        lblFooter.setText("Creado por Gamer Studio ©");
-        getContentPane().add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, -1, -1));
         getContentPane().add(lblWallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 430));
 
         pack();
@@ -173,20 +153,20 @@ public class GestionUsuario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GestionUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GestionUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GestionUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GestionUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GestionUsuario().setVisible(true);
+                new GestionClientes().setVisible(true);
             }
         });
     }
@@ -196,6 +176,6 @@ public class GestionUsuario extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblFooter;
     private javax.swing.JLabel lblWallpaper;
-    private javax.swing.JTable tablaUsuarios;
+    private javax.swing.JTable tablaClientes;
     // End of variables declaration//GEN-END:variables
 }

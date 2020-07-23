@@ -71,7 +71,6 @@ public class VentanaLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
-        setPreferredSize(new java.awt.Dimension(400, 550));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Fira Mono", 1, 18)); // NOI18N
@@ -104,9 +103,8 @@ public class VentanaLogin extends javax.swing.JFrame {
         });
         getContentPane().add(BotonAcceder, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 445, 120, 35));
 
-        lblFooter.setForeground(java.awt.Color.black);
         lblFooter.setText("Creado por Gamer Studio ©");
-        getContentPane().add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(235, 500, -1, -1));
+        getContentPane().add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 490, -1, -1));
         getContentPane().add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 0, 270, 270));
 
         lblWallpaper.setBackground(new java.awt.Color(153, 153, 255));

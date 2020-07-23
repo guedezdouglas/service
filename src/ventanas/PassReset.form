@@ -55,6 +55,9 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JPasswordField" name="txtActualPass">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="40" y="60" width="180" height="-1"/>
@@ -129,14 +132,11 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblFooter">
       <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" id="black" palette="1" red="0" type="palette"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Creado por Gamer Studio &#xa9;"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="100" y="265" width="-1" height="-1"/>
+          <AbsoluteConstraints x="95" y="270" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>

@@ -83,6 +83,8 @@ public class PassReset extends javax.swing.JFrame {
         lblTitle.setForeground(new java.awt.Color(197, 224, 224));
         lblTitle.setText("Password Reset");
         getContentPane().add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        txtActualPass.setEnabled(false);
         getContentPane().add(txtActualPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 180, -1));
         getContentPane().add(txtNewPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 180, -1));
         getContentPane().add(txtNewPass2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 180, -1));
@@ -107,9 +109,8 @@ public class PassReset extends javax.swing.JFrame {
         });
         getContentPane().add(botonCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 80, -1));
 
-        lblFooter.setForeground(java.awt.Color.black);
         lblFooter.setText("Creado por Gamer Studio ©");
-        getContentPane().add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 265, -1, -1));
+        getContentPane().add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 270, -1, -1));
         getContentPane().add(lblWallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 330));
 
         pack();
