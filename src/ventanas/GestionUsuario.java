@@ -89,16 +89,12 @@ public class GestionUsuario extends javax.swing.JFrame {
                 int columna_point = 2;
                 
                 if (fila_point > -1) {
-                    
                     user_update = (String)model.getValueAt(fila_point, columna_point);
                     FichaUsuario ficha = new FichaUsuario();
                     ficha.setVisible(true);
-                    
-                } else {
                 }
             }
         });
-        
     }
     
     @Override

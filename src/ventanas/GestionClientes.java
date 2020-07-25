@@ -52,7 +52,7 @@ public class GestionClientes extends javax.swing.JFrame {
             
             Connection cn = Conexion.conectar();
             PreparedStatement pst = cn.prepareStatement(
-            "select id_clientes, nombre_cliente, email_cliente, tel_cliente, direccion_cliente, ultima_modificacion from clientes");
+                    "select id_clientes, nombre_cliente, email_cliente, tel_cliente, ultima_modificacion from clientes");
             
             ResultSet rs = pst.executeQuery();
             
@@ -63,13 +63,12 @@ public class GestionClientes extends javax.swing.JFrame {
             model.addColumn("Nombre Cliente");
             model.addColumn(" eMail ");
             model.addColumn("Telefono");
-            model.addColumn("Direccion");
             model.addColumn("Ultima Modificacion");
             
             while (rs.next()) {
-                Object[] fila = new Object[6];
+                Object[] fila = new Object[5];
                 
-                for (int i = 0; i < 6; i++) {
+                for (int i = 0; i < 5; i++) {
                     
                     fila[i] = rs.getObject(i + 1);
                     
@@ -80,8 +79,23 @@ public class GestionClientes extends javax.swing.JFrame {
             
         } catch (SQLException e) {
             System.err.println("Error al extraer datos a la tabla clientes " + e);
-            JOptionPane.showMessageDialog(null, "Error al llenar la tabla de clientes.\n Contacte con el administrador "+e);
+            JOptionPane.showMessageDialog(null, "Error al llenar la tabla de clientes.\n Contacte con el administrador " + e);
         }
+        
+        tablaClientes.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e){
+                int fila_point = tablaClientes.rowAtPoint(e.getPoint());
+                int columna_point = 0;
+                
+                if (fila_point > -1) {
+                    IDCliente_update = (int)model.getValueAt(fila_point, columna_point);
+                    FichaCliente fliente = new FichaCliente();
+                    fliente.setVisible(true);
+                    //JOptionPane.showMessageDialog(null, "Cliente # " + IDCliente_update);
+                }
+            }
+        });
     }
     
     @Override
