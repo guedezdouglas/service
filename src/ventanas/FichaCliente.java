@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -33,7 +33,7 @@ import javax.swing.table.DefaultTableModel;
  * @author guede
  */
 public class FichaCliente extends javax.swing.JFrame {
-    
+
     int IDCliente_update;
     public static int ID_equipo = 0;
     String user;
@@ -46,28 +46,26 @@ public class FichaCliente extends javax.swing.JFrame {
         initComponents();
         user = VentanaLogin.user;
         IDCliente_update = GestionClientes.IDCliente_update;
-        
+
         setSize(650, 430);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        
+
         ImageIcon wallpaper = new ImageIcon("src/images/wallpaperPrincipal.jpg");
         Icon icono = new ImageIcon(wallpaper.getImage().getScaledInstance(lblWallpaper.getWidth(),
                 lblWallpaper.getHeight(), Image.SCALE_DEFAULT));
         lblWallpaper.setIcon(icono);
         this.repaint();
-        
+
         try {
-            
+
             Connection cn = Conexion.conectar();
             PreparedStatement pst = cn.prepareStatement(
-            "select * from clientes where id_clientes = '" + IDCliente_update + "'");
-            
+                    "select * from clientes where id_clientes = '" + IDCliente_update + "'");
             ResultSet rs = pst.executeQuery();
-            
+
             if (rs.next()) {
-                
                 setTitle("Informacion de Cliente - '" + rs.getString("nombre_cliente") + "' / Sesion - " + user);
                 lblTitulo.setText("Informacion del Cliente - " + rs.getString("nombre_cliente"));
                 txtNombre.setText(rs.getString("nombre_cliente"));
@@ -77,60 +75,60 @@ public class FichaCliente extends javax.swing.JFrame {
                 txtUltimaModificacion.setText(rs.getString("ultima_modificacion"));
             }
             cn.close();
-            
+
         } catch (SQLException e) {
             System.err.println("Error al obtener los datos del usuario.\n" + e);
             JOptionPane.showMessageDialog(null, "Error al obtener datos del cliente " + e);
         }
-        
+
         try {
             Connection cn = Conexion.conectar();
             PreparedStatement pst = cn.prepareStatement(
-            "select id_equipos, tipo_equipo, marca, num_serie, estatus where id_clientes = '" + IDCliente_update + "'");
+                    "select id_equipos, tipo_equipo, marca, num_serie, estatus from equipos where id_clientes = '" + IDCliente_update + "'");
             ResultSet rs = pst.executeQuery();
-            
+
             tablaEquipos = new JTable(model);
             scrollpaneequipo.setViewportView(tablaEquipos);
-            
+
             model.addColumn(" # ");
             model.addColumn("Tipo Equipo");
             model.addColumn("Marca");
             model.addColumn("Serial");
             model.addColumn("Estatus");
-            
-            while(rs.next()){
-                
+
+            while (rs.next()) {
+
                 Object[] fila = new Object[5];
-                
+
                 for (int i = 0; i < 5; i++) {
-                    
+
                     fila[i] = rs.getObject(i + 1);
                 }
                 model.addRow(fila);
             }
             cn.close();
-            
+
         } catch (SQLException e) {
-            System.err.println("Error al llenado de la tabla equipos. " + e);
-            JOptionPane.showMessageDialog(null, "Error al llenar tabla de equipos " + e);
+            System.err.println("Error al llenado de la tabla equipos.\n " + e);
+            JOptionPane.showMessageDialog(null, "Error al llenar tabla de equipos\n " + e);
         }
-        
+
         tablaEquipos.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e){
+            public void mouseClicked(MouseEvent e) {
                 int fila_poimt = tablaEquipos.rowAtPoint(e.getPoint());
                 int columna_point = 0;
-                
+
                 if (fila_poimt > -1) {
-                    
-                    ID_equipo = (int)model.getValueAt(fila_poimt, columna_point);
+
+                    ID_equipo = (int) model.getValueAt(fila_poimt, columna_point);
                     JOptionPane.showMessageDialog(null, e);
-                    
+
                 }
             }
         });
     }
-    
+
     @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("images/icon.png"));
@@ -252,10 +250,10 @@ public class FichaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_botonImprimirClientesActionPerformed
 
     private void botonRegistrarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarEquipoActionPerformed
-        
+
         NuevoEquipo equipo = new NuevoEquipo();
         equipo.setVisible(true);
-        
+
     }//GEN-LAST:event_botonRegistrarEquipoActionPerformed
 
     /**

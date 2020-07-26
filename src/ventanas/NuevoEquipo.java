@@ -15,12 +15,13 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 import java.util.Calendar;
+
 /**
  *
  * @author guede
  */
 public class NuevoEquipo extends javax.swing.JFrame {
-    
+
     int IDCliente_update = 0;
     String user = "", nom_cliente = "";
 
@@ -31,37 +32,37 @@ public class NuevoEquipo extends javax.swing.JFrame {
         initComponents();
         user = VentanaLogin.user;
         IDCliente_update = GestionClientes.IDCliente_update;
-        
+
         try {
             Connection cn = Conexion.conectar();
             PreparedStatement pst = cn.prepareStatement(
-            "select nombre_cliente from clientes where id_clientes = '" + IDCliente_update + "'");
+                    "select nombre_cliente from clientes where id_clientes = '" + IDCliente_update + "'");
             ResultSet rs = pst.executeQuery();
-            
+
             if (rs.next()) {
-                
+
                 nom_cliente = rs.getString("nombre_cliente");
-                
+
             }
         } catch (SQLException e) {
-            
+
             System.err.println("Error al consultar nombre del cliente " + e);
         }
-        
+
         txtNombredelCliente.setText(nom_cliente);
         setTitle("Registrar nuevo equipo para: " + nom_cliente);
         setSize(650, 430);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        
+
         ImageIcon wallpaper = new ImageIcon("src/images/wallpaperPrincipal.jpg");
         Icon icono = new ImageIcon(wallpaper.getImage().getScaledInstance(lblWallpaper.getWidth(),
                 lblWallpaper.getHeight(), Image.SCALE_DEFAULT));
         lblWallpaper.setIcon(icono);
         this.repaint();
     }
-    
+
     @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("images/icon.png"));
@@ -147,6 +148,11 @@ public class NuevoEquipo extends javax.swing.JFrame {
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 195, -1, -1));
 
         boxMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hewlett-Packard", "Dell", "Asus", "MSI", "GIGABYTE", "Alienware", "CyberPowerPC", "Samsung", "Acer", "Adata", "Sony", "Razer", "Lenovo", "LG", "Microsoft", "Epson", " " }));
+        boxMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxMarcaActionPerformed(evt);
+            }
+        });
         getContentPane().add(boxMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 215, 130, -1));
 
         botonRegistrarEquipo.setText("Registrar Equipo");
@@ -159,7 +165,7 @@ public class NuevoEquipo extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Fira Sans", 0, 15)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(197, 224, 224));
-        jLabel7.setText("Fail y Observaciones reportados:");
+        jLabel7.setText("Falla y Observaciones reportados:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
 
         lblFooter.setText("Creado por Gamer Studio ©");
@@ -171,11 +177,90 @@ public class NuevoEquipo extends javax.swing.JFrame {
 
     private void botonRegistrarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarEquipoActionPerformed
 
+        int validar = 0;
+        String dia_ingreso, mes_ingreso, year_ingreso, modelo, serial, observaciones, tipo_equipo, marca, estatus;
+        
+        tipo_equipo = boxTipodeEquipo.getSelectedItem().toString();
+        modelo = txtModelo.getText().trim();
+        serial = txtSerial.getText().trim();
+        marca = boxMarca.getSelectedItem().toString();
+        observaciones = txtObservaciones.getText();
+        estatus = "Nuevo Ingreso";
+        
+        Calendar calendar = Calendar.getInstance();
+        
+        dia_ingreso = Integer.toString(calendar.get(Calendar.DATE));
+        mes_ingreso = Integer.toString(calendar.get(Calendar.MONTH));
+        year_ingreso = Integer.toString(calendar.get(Calendar.YEAR));   
+                
+        if (modelo.equals("")) {
+            txtModelo.setBackground(Color.MAGENTA);
+            validar++;
+        }
+        if (serial.equals("")) {
+            txtSerial.setBackground(Color.MAGENTA);
+            validar++;
+        }
+        if (observaciones.equals("")) {
+            txtObservaciones.setText("Sin Observaciones");
+        }
+
+        if (validar != 0) {
+
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los Campos.");
+
+        } else {
+
+            // Inicia la conexion a la base de datos....
+            try {
+                Connection cn = Conexion.conectar();
+                PreparedStatement pst = cn.prepareStatement(
+                        "insert into equipos values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+                // Agregando los datos a la base de datos...
+                pst.setInt(1, 0);
+                pst.setInt(2, IDCliente_update);
+                pst.setString(3, tipo_equipo);
+                pst.setString(4, marca);
+                pst.setString(5, modelo);
+                pst.setString(6, serial);
+                pst.setString(7, dia_ingreso);
+                pst.setString(8, mes_ingreso);
+                pst.setString(9, year_ingreso);
+                pst.setString(10, observaciones);
+                pst.setString(11, estatus);
+                pst.setString(12, user);
+                pst.setString(13, "");
+                pst.setString(14, "");
+
+                pst.executeUpdate();
+                cn.close();
+                
+                txtNombredelCliente.setBackground(Color.GREEN);
+                txtModelo.setBackground(Color.GREEN);
+                txtSerial.setBackground(Color.GREEN);
+                
+                JOptionPane.showMessageDialog(null, "Registro Exitoso.");
+
+            } catch (Exception e) {
+
+                System.err.println("Error al registrar equipo.\n" + e);
+                JOptionPane.showMessageDialog(null, "Error al registrar equipo.\nContacte al Administrador.\n" + e);
+
+            }
+
+        }
+
+
     }//GEN-LAST:event_botonRegistrarEquipoActionPerformed
 
     private void boxTipodeEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTipodeEquipoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_boxTipodeEquipoActionPerformed
+
+    private void boxMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxMarcaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxMarcaActionPerformed
 
     /**
      * @param args the command line arguments

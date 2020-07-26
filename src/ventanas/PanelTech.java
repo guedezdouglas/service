@@ -5,19 +5,50 @@
  */
 package ventanas;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.WindowConstants;
+
 /**
  *
  * @author doug1as
  */
 public class PanelTech extends javax.swing.JFrame {
 
+    String user;
+    int sesion_usuario;
+
     /**
      * Creates new form PanelTech
      */
     public PanelTech() {
         initComponents();
+        user = VentanaLogin.user;
+        sesion_usuario = PanelAdmin.sesion_usuario;
+
+        this.setSize(650, 430);
+        this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.setTitle("Panel Tecnico.");
+        this.setTitle("Panel Tecnico. Sesion - " + user);
+
+        if (sesion_usuario == 1) {
+            setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        } else {
+            setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        }
+        ImageIcon wallpaper = new ImageIcon("src/images/wallpaperPrincipal.jpg");
+        Icon icono = new ImageIcon(wallpaper.getImage().getScaledInstance(lblWallpaper.getWidth(),
+                lblWallpaper.getHeight(), Image.SCALE_DEFAULT));
+        lblWallpaper.setIcon(icono);
+        this.repaint();
+    }
+    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("images/icon.png"));
+        return retValue;
     }
 
     /**
@@ -29,18 +60,20 @@ public class PanelTech extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        lblFooter = new javax.swing.JLabel();
+        lblWallpaper = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblFooter.setText("Creado por Gamer Studio ©");
+        getContentPane().add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, -1, -1));
+
+        lblWallpaper.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblWallpaper.setText("Working on it");
+        lblWallpaper.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(lblWallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 430));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -81,5 +114,7 @@ public class PanelTech extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lblFooter;
+    private javax.swing.JLabel lblWallpaper;
     // End of variables declaration//GEN-END:variables
 }
