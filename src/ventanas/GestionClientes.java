@@ -123,6 +123,7 @@ public class GestionClientes extends javax.swing.JFrame {
         setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblFooter.setForeground(new java.awt.Color(197, 224, 224));
         lblFooter.setText("Creado por Gamer Studio ©");
         getContentPane().add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, -1, -1));
 

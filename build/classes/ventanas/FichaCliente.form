@@ -80,7 +80,7 @@
           <Font name="Fira Sans" size="15" style="0"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="b1" green="6b" red="6b" type="rgb"/>
+          <Color blue="e0" green="e0" red="c5" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Telefono:"/>
       </Properties>
@@ -103,7 +103,7 @@
           <Font name="Fira Sans" size="15" style="0"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="b1" green="6b" red="6b" type="rgb"/>
+          <Color blue="e0" green="e0" red="c5" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Direccion:"/>
       </Properties>
@@ -122,6 +122,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblFooter">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="e0" green="e0" red="c5" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Creado por Gamer Studio &#xa9;"/>
       </Properties>
       <Constraints>
@@ -152,7 +155,7 @@
           <Font name="Fira Sans" size="15" style="0"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="b1" green="6b" red="6b" type="rgb"/>
+          <Color blue="e0" green="e0" red="c5" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Ultima Modificacion:"/>
       </Properties>
@@ -164,6 +167,10 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtUltimaModificacion">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Constraints>
@@ -230,6 +237,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Actualizar Cliente"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonActualizarClienteActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="295" y="330" width="135" height="-1"/>

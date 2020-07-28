@@ -30,6 +30,9 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="lblFooter">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="e0" green="e0" red="c5" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Creado por Gamer Studio &#xa9;"/>
       </Properties>
       <Constraints>

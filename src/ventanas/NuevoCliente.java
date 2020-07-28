@@ -93,12 +93,12 @@ public class NuevoCliente extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Fira Sans", 0, 15)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(107, 107, 177));
+        jLabel4.setForeground(new java.awt.Color(197, 224, 224));
         jLabel4.setText("Telefono:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Fira Sans", 0, 15)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(107, 107, 177));
+        jLabel5.setForeground(new java.awt.Color(197, 224, 224));
         jLabel5.setText("Direccion:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
         getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 200, -1));
@@ -114,6 +114,7 @@ public class NuevoCliente extends javax.swing.JFrame {
         });
         getContentPane().add(botonAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 234, 120, 100));
 
+        lblFooter.setForeground(new java.awt.Color(197, 224, 224));
         lblFooter.setText("Creado por Gamer Studio ©");
         getContentPane().add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, -1, -1));
         getContentPane().add(lblWallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 430));

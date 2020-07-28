@@ -109,6 +109,7 @@ public class PassReset extends javax.swing.JFrame {
         });
         getContentPane().add(botonCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 80, -1));
 
+        lblFooter.setForeground(new java.awt.Color(240, 240, 240));
         lblFooter.setText("Creado por Gamer Studio ©");
         getContentPane().add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 270, -1, -1));
         getContentPane().add(lblWallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 330));

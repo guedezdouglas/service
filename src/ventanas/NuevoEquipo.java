@@ -115,16 +115,17 @@ public class NuevoEquipo extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
         txtNombredelCliente.setEditable(false);
+        txtNombredelCliente.setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().add(txtNombredelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 200, -1));
 
         jLabel4.setFont(new java.awt.Font("Fira Sans", 0, 15)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(107, 107, 177));
+        jLabel4.setForeground(new java.awt.Color(197, 224, 224));
         jLabel4.setText("Modelo:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
         getContentPane().add(txtModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 200, -1));
 
         jLabel5.setFont(new java.awt.Font("Fira Sans", 0, 15)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(107, 107, 177));
+        jLabel5.setForeground(new java.awt.Color(197, 224, 224));
         jLabel5.setText("Numero de serie:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
         getContentPane().add(txtSerial, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 200, -1));
@@ -147,7 +148,7 @@ public class NuevoEquipo extends javax.swing.JFrame {
         jLabel6.setText("Marca:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 195, -1, -1));
 
-        boxMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hewlett-Packard", "Dell", "Asus", "MSI", "GIGABYTE", "Alienware", "CyberPowerPC", "Samsung", "Acer", "Adata", "Sony", "Razer", "Lenovo", "LG", "Microsoft", "Epson", " " }));
+        boxMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hewlett-Packard", "Dell", "Asus", "MSI", "GIGABYTE", "Alienware", "CyberPowerPC", "Samsung", "Acer", "Adata", "Sony", "Razer", "Lenovo", "LG", "Microsoft", "Epson", "Toshiba", "Xerox", "Others" }));
         boxMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxMarcaActionPerformed(evt);
@@ -168,6 +169,7 @@ public class NuevoEquipo extends javax.swing.JFrame {
         jLabel7.setText("Falla y Observaciones reportados:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
 
+        lblFooter.setForeground(new java.awt.Color(197, 224, 224));
         lblFooter.setText("Creado por Gamer Studio ©");
         getContentPane().add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, -1, -1));
         getContentPane().add(lblWallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 430));

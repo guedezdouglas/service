@@ -153,17 +153,17 @@ public class PanelAdmin extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 167, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Fira Sans Book", 1, 16)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(107, 107, 177));
+        jLabel4.setForeground(new java.awt.Color(197, 224, 224));
         jLabel4.setText("Panel Ventas");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(62, 322, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Fira Sans Book", 1, 16)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(107, 107, 177));
+        jLabel5.setForeground(new java.awt.Color(197, 224, 224));
         jLabel5.setText("Panel Tecnico");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 322, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Fira Sans Book", 1, 16)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(107, 107, 177));
+        jLabel6.setForeground(new java.awt.Color(197, 224, 224));
         jLabel6.setText("Acerca de");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(515, 322, -1, -1));
 
@@ -171,6 +171,7 @@ public class PanelAdmin extends javax.swing.JFrame {
         lblNombreUsuario.setForeground(java.awt.Color.lightGray);
         getContentPane().add(lblNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
+        lblFooter.setForeground(new java.awt.Color(197, 224, 224));
         lblFooter.setText("Creado por Gamer Studio ©");
         getContentPane().add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, -1, -1));
         getContentPane().add(lblWallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 430));

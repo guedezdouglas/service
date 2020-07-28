@@ -121,6 +121,7 @@ public class FichaUsuario extends javax.swing.JFrame {
         lblTitulo.setText("Informacion de Usuario");
         getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
+        lblFooter.setForeground(new java.awt.Color(197, 224, 224));
         lblFooter.setText("Creado por Gamer Studio ©");
         getContentPane().add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, -1, -1));
 
@@ -140,7 +141,7 @@ public class FichaUsuario extends javax.swing.JFrame {
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Fira Sans", 1, 15)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(107, 107, 177));
+        jLabel5.setForeground(new java.awt.Color(197, 224, 224));
         jLabel5.setText("Nivel:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, -1, -1));
 
@@ -174,6 +175,8 @@ public class FichaUsuario extends javax.swing.JFrame {
         boxEstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
         getContentPane().add(boxEstatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 100, -1));
 
+        txtHowMadeIt.setEditable(false);
+        txtHowMadeIt.setBackground(new java.awt.Color(255, 255, 255));
         txtHowMadeIt.setEnabled(false);
         getContentPane().add(txtHowMadeIt, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 200, -1));
 

@@ -74,7 +74,7 @@ public class VentanaLogin extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Fira Mono", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(107, 107, 177));
+        jLabel1.setForeground(new java.awt.Color(197, 224, 224));
         jLabel1.setText("Usuario:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 305, 100, 25));
 
@@ -84,7 +84,7 @@ public class VentanaLogin extends javax.swing.JFrame {
         getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 230, 30));
 
         jLabel2.setFont(new java.awt.Font("Fira Mono", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(107, 107, 177));
+        jLabel2.setForeground(new java.awt.Color(197, 224, 224));
         jLabel2.setText("Password:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 100, 25));
 
@@ -93,7 +93,6 @@ public class VentanaLogin extends javax.swing.JFrame {
         getContentPane().add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 395, 230, 30));
 
         BotonAcceder.setFont(new java.awt.Font("Fira Sans", 0, 18)); // NOI18N
-        BotonAcceder.setForeground(new java.awt.Color(47, 47, 177));
         BotonAcceder.setText("Acceder");
         BotonAcceder.setBorder(null);
         BotonAcceder.addActionListener(new java.awt.event.ActionListener() {
@@ -103,6 +102,7 @@ public class VentanaLogin extends javax.swing.JFrame {
         });
         getContentPane().add(BotonAcceder, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 445, 120, 35));
 
+        lblFooter.setForeground(new java.awt.Color(197, 224, 224));
         lblFooter.setText("Creado por Gamer Studio ©");
         getContentPane().add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 490, -1, -1));
         getContentPane().add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 0, 270, 270));

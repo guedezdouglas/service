@@ -1,4 +1,4 @@
- /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -25,6 +25,8 @@ import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -118,12 +120,10 @@ public class FichaCliente extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
                 int fila_poimt = tablaEquipos.rowAtPoint(e.getPoint());
                 int columna_point = 0;
-
                 if (fila_poimt > -1) {
-
                     ID_equipo = (int) model.getValueAt(fila_poimt, columna_point);
-                    JOptionPane.showMessageDialog(null, e);
-
+                    FichaEquipo fichaEquipo = new FichaEquipo();
+                    fichaEquipo.setVisible(true);
                 }
             }
         });
@@ -180,17 +180,18 @@ public class FichaCliente extends javax.swing.JFrame {
         getContentPane().add(txteMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 200, -1));
 
         jLabel4.setFont(new java.awt.Font("Fira Sans", 0, 15)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(107, 107, 177));
+        jLabel4.setForeground(new java.awt.Color(197, 224, 224));
         jLabel4.setText("Telefono:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
         getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 200, -1));
 
         jLabel5.setFont(new java.awt.Font("Fira Sans", 0, 15)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(107, 107, 177));
+        jLabel5.setForeground(new java.awt.Color(197, 224, 224));
         jLabel5.setText("Direccion:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 235, -1, -1));
         getContentPane().add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 255, 200, -1));
 
+        lblFooter.setForeground(new java.awt.Color(197, 224, 224));
         lblFooter.setText("Creado por Gamer Studio ©");
         getContentPane().add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, -1, -1));
 
@@ -200,10 +201,12 @@ public class FichaCliente extends javax.swing.JFrame {
         getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Fira Sans", 0, 15)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(107, 107, 177));
+        jLabel6.setForeground(new java.awt.Color(197, 224, 224));
         jLabel6.setText("Ultima Modificacion:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
 
+        txtUltimaModificacion.setEditable(false);
+        txtUltimaModificacion.setBackground(new java.awt.Color(255, 255, 255));
         txtUltimaModificacion.setEnabled(false);
         getContentPane().add(txtUltimaModificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 200, -1));
 
@@ -239,6 +242,11 @@ public class FichaCliente extends javax.swing.JFrame {
         getContentPane().add(botonRegistrarEquipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 280, 135, -1));
 
         botonActualizarCliente.setText("Actualizar Cliente");
+        botonActualizarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonActualizarClienteActionPerformed(evt);
+            }
+        });
         getContentPane().add(botonActualizarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 330, 135, -1));
         getContentPane().add(lblWallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 430));
 
@@ -246,6 +254,97 @@ public class FichaCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonImprimirClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonImprimirClientesActionPerformed
+
+        Document doc = new Document();
+
+        try {
+
+            String ruta = System.clearProperty("user.home");
+            PdfWriter.getInstance(doc, new FileOutputStream(ruta + "/Reportes/Clientes/" + txtNombre.getText().trim() + ".pdf"));
+
+            com.itextpdf.text.Image header = com.itextpdf.text.Image.getInstance("src/images/BannerPDF.png");
+            header.scaleToFit(650, 1000);
+            header.setAlignment(Chunk.ALIGN_CENTER);
+
+            Paragraph parrafo = new Paragraph();
+            parrafo.setAlignment(Paragraph.ALIGN_CENTER);
+            parrafo.add("\n Informacion del Cliente. \n \n");
+            parrafo.setFont(FontFactory.getFont("Tahoma", 14, Font.BOLD, BaseColor.DARK_GRAY));
+
+            doc.open();
+            doc.add(header);
+            doc.add(parrafo);
+
+            PdfPTable tablapdf = new PdfPTable(5);
+            tablapdf.addCell("ID");
+            tablapdf.addCell("Nombre");
+            tablapdf.addCell("eMail");
+            tablapdf.addCell("Telefono");
+            tablapdf.addCell("Direccion");
+
+            try {
+                Connection cn = Conexion.conectar();
+                PreparedStatement pst = cn.prepareStatement(
+                        "select * from clientes where id_clientes = '" + IDCliente_update + "'");
+                ResultSet rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    do {
+
+                        tablapdf.addCell(rs.getString(1));
+                        tablapdf.addCell(rs.getString(2));
+                        tablapdf.addCell(rs.getString(3));
+                        tablapdf.addCell(rs.getString(4));
+                        tablapdf.addCell(rs.getString(5));
+
+                    } while (rs.next());
+
+                    doc.add(tablapdf);
+                }
+
+                Paragraph parrafo2 = new Paragraph();
+                parrafo2.setAlignment(Paragraph.ALIGN_CENTER);
+                parrafo2.add("\n \n Equipos Registrados. \n \n");
+                parrafo2.setFont(FontFactory.getFont("Tahoma", 14, Font.BOLD, BaseColor.DARK_GRAY));
+
+                doc.add(parrafo2);
+
+                PdfPTable tablaEquipos = new PdfPTable(4);
+
+                tablaEquipos.addCell("ID Equipo");
+                tablaEquipos.addCell("Tipo");
+                tablaEquipos.addCell("Marca");
+                tablaEquipos.addCell("Estatus");
+
+                try {
+                    Connection cn2 = Conexion.conectar();
+                    PreparedStatement pst2 = cn2.prepareStatement(
+                            "select id_equipos, tipo_equipo, marca, estatus from equipos where id_clientes = '" + IDCliente_update + "'");
+                    ResultSet rs2 = pst2.executeQuery();
+
+                    if (rs2.next()) {
+                        do {
+                            tablaEquipos.addCell(rs2.getString(1));
+                            tablaEquipos.addCell(rs2.getString(2));
+                            tablaEquipos.addCell(rs2.getString(3));
+                            tablaEquipos.addCell(rs2.getString(4));
+                        } while (rs2.next());
+                        doc.add(tablaEquipos);
+                    }
+                } catch (SQLException e) {
+                    System.err.println("Error al cargar datos del equipo en tabla de equipos \n" + e);
+                }
+
+            } catch (SQLException e) {
+                System.err.println("Error al obtener datos del cliente. \n " + e);
+            }
+
+            doc.close();
+            JOptionPane.showMessageDialog(null, "Reporte creado correctamente.");
+        } catch (DocumentException | IOException e) {
+            System.err.println("Error en PDF o ruta de imagen " + e);
+            JOptionPane.showMessageDialog(null, "Error al generar PDF \n Contacte al Administrador \n ");
+        }
 
     }//GEN-LAST:event_botonImprimirClientesActionPerformed
 
@@ -255,6 +354,67 @@ public class FichaCliente extends javax.swing.JFrame {
         equipo.setVisible(true);
 
     }//GEN-LAST:event_botonRegistrarEquipoActionPerformed
+
+    private void botonActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarClienteActionPerformed
+
+        int validar = 0;
+        String nombre, email, phone, address;
+
+        nombre = txtNombre.getText().trim();
+        email = txteMail.getText().trim();
+        phone = txtPhone.getText().trim();
+        address = txtDireccion.getText();
+
+        if (nombre.equals("")) {
+            txtNombre.setBackground(Color.MAGENTA);
+            validar++;
+        }
+        if (email.equals("")) {
+            txteMail.setBackground(Color.MAGENTA);
+            validar++;
+        }
+        if (phone.equals("")) {
+            txtPhone.setBackground(Color.MAGENTA);
+            validar++;
+        }
+        if (address.equals("")) {
+            txtDireccion.setBackground(Color.MAGENTA);
+            validar++;
+        }
+
+        if (validar != 0) {
+
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos.");
+
+        } else {
+
+            try {
+                Connection cn = Conexion.conectar();
+                PreparedStatement pst = cn.prepareStatement(
+                        "update clientes set nombre_cliente =?, email_cliente =?, tel_cliente =?, direccion_cliente =?, ultima_modificacion =?"
+                        + " where id_clientes = '" + IDCliente_update + "'");
+
+                pst.setString(1, nombre);
+                pst.setString(2, email);
+                pst.setString(3, phone);
+                pst.setString(4, address);
+                pst.setString(5, user);
+
+                pst.executeUpdate();
+                txtDireccion.setBackground(Color.GREEN);
+                txtNombre.setBackground(Color.GREEN);
+                txtPhone.setBackground(Color.GREEN);
+                txteMail.setBackground(Color.GREEN);
+                JOptionPane.showMessageDialog(null, "Actualizacion Exitosa");
+                this.dispose();
+                cn.close();
+
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al actualizar cliente, contacte con el administrador\n " + e);
+                System.err.println("Error al actualizar cliente. " + e);
+            }
+        }
+    }//GEN-LAST:event_botonActualizarClienteActionPerformed
 
     /**
      * @param args the command line arguments

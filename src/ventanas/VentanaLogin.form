@@ -34,7 +34,7 @@
           <Font name="Fira Mono" size="18" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="b1" green="6b" red="6b" type="rgb"/>
+          <Color blue="e0" green="e0" red="c5" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Usuario:"/>
       </Properties>
@@ -68,7 +68,7 @@
           <Font name="Fira Mono" size="18" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="b1" green="6b" red="6b" type="rgb"/>
+          <Color blue="e0" green="e0" red="c5" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Password:"/>
       </Properties>
@@ -98,9 +98,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Fira Sans" size="18" style="0"/>
         </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="b1" green="2f" red="2f" type="rgb"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Acceder"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
@@ -117,6 +114,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblFooter">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="e0" green="e0" red="c5" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Creado por Gamer Studio &#xa9;"/>
       </Properties>
       <Constraints>
