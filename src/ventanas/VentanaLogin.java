@@ -12,6 +12,7 @@ import javax.swing.Icon;
 import java.sql.*;
 import clases.Conexion;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -31,6 +32,7 @@ public class VentanaLogin extends javax.swing.JFrame {
         this.setSize(400, 550);
         this.setResizable(false);
         this.setTitle("Acceso al Sistema.");
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         ImageIcon wallpaper = new ImageIcon("src/images/wallpaperPrincipal.jpg");
         Icon icono = new ImageIcon(wallpaper.getImage().getScaledInstance(lblWallpaper.getWidth(),
